@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ToDoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/', [ToDoController::class, 'index']);
+Route::post('/', [ToDoController::class, 'store']);
+Route::get('/{todo}', [ToDoController::class, 'show']);
+Route::put('/{todo}', [ToDoController::class, 'update']);
+Route::delete('/{todo}', [ToDoController::class, 'destroy']);
