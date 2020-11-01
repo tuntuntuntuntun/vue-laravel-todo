@@ -5,10 +5,10 @@
                 <span class="navbar-brand mb-0 h1 text-light">ToDo</span>
                 <div>
                     <router-link :to="{ name: 'todo.list' }">
-                        <button class="btn btn-dark text-light">一覧</button>
+                        <button class="btn btn-dark text-light">list</button>
                     </router-link>
                     <router-link :to="{ name: 'todo.create' }">
-                        <button class="btn btn-dark text-light">追加</button>
+                        <button class="btn btn-dark text-light">new</button>
                     </router-link>
                 </div>
             </nav>

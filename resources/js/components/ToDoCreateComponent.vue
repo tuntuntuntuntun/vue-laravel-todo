@@ -6,15 +6,15 @@
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0" v-model="todo.state">
-                            <label for="inlineRadio1" class="col-sm-3 col-form-label">Waiting</label>
+                            <label for="inlineRadio1" class="col-sm-3 col-form-label">waiting</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1" v-model="todo.state">
-                            <label for="inlineRadio2" class="col-sm-3 col-form-label">Working</label>
+                            <label for="inlineRadio2" class="col-sm-3 col-form-label">working</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="2" v-model="todo.state">
-                            <label for="inlineRadio3" class="col-sm-3 col-form-label">Completed</label>
+                            <label for="inlineRadio3" class="col-sm-3 col-form-label">completed</label>
                         </div>
                     </div>
                     <div class="form-group row">
