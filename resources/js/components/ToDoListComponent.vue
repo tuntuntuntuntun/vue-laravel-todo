@@ -12,53 +12,48 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Title1</td>
-                <td>Content1</td>
-                <td>completed</td>
-                <td>
-                    <router-link :to="{ name: 'todo.edit', params: { toDoId: 1 } }">
-                        <button class="btn btn-success">Edit</button>
-                    </router-link>
-                </td>
-                <td>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Title2</td>
-                <td>Content2</td>
-                <td>waiting</td>
-                <td>
-                    <router-link :to="{ name: 'todo.edit', params: { toDoId: 2 } }">
-                        <button class="btn btn-success">Edit</button>
-                    </router-link>
-                </td>
-                <td>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Title3</td>
-                <td>Content3</td>
-                <td>working</td>
-                <td>
-                    <router-link :to="{ name: 'todo.edit', params: { toDoId: 3 } }">
-                        <button class="btn btn-success">Edit</button>
-                    </router-link>
-                </td>
-                <td>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
+                <tr v-for="(todo,index) in todos" :key="index">
+                    <th scope="row">{{ todo.id }}</th>
+                    <td>{{ todo.title }}</td>
+                    <td>{{ todo.content }}</td>
+                    <td>{{ todo.state }}</td>
+                    <td>
+                        <router-link :to="{ name: 'todo.edit', params: { toDoId: todo.id } }">
+                            <button class="btn btn-primary">Edit</button>
+                        </router-link>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" @click="deleteToDo(todo.id)">Delete</button>
+                    </td>
+                </tr> 
             </tbody>
         </table>
     </div>
 </template>
 
 <script>
-    export default {}
+    export default {
+        data () {
+            return {
+                todos: []
+            }
+        },
+        methods: {
+            getToDos () {
+                axios.get('/api')
+                .then((res) => {
+                    this.todos = res.data;
+                });
+            },
+            deleteToDo (id) {
+                axios.delete('/api/' + id)
+                    .then((res) => {
+                        this.getToDos()
+                    })
+            }
+        },
+        mounted () {
+            this.getToDos();
+        }
+    }
 </script>
