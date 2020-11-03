@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Http\Requests\ToDoRequest;
+use App\Http\Requests\ToDoRequest;
 use App\Models\ToDo;
 
 class ToDoController extends Controller
@@ -13,7 +13,7 @@ class ToDoController extends Controller
         return ToDo::all();
     }
 
-    public function store(Request $request)
+    public function store(ToDoRequest $request)
     {
         return ToDo::create($request->all());
     }

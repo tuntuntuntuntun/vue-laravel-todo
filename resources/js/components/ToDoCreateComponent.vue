@@ -76,6 +76,10 @@
                 axios.post('/api', this.todo)
                     .then((res) => {
                         this.$router.push({ name: 'todo.list'})
+                    }).catch(error => {
+                        if (error.response) {
+                            console.log(error.response)
+                        }
                     })
             }
         }
