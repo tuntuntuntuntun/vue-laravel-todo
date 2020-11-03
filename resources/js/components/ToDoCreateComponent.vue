@@ -2,6 +2,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-6">
+                <div class="error">
+                    <div v-if="errors != ''">{{ errors.state }}</div>
+                    <div v-if="errors != ''">{{ errors.title }}</div>
+                    <div v-if="errors != ''">{{ errors.content }}</div>
+                </div>
                 <form @submit.prevent="submit">
                     <div class="form-group">
                         <div class="form-check form-check-inline">
@@ -36,11 +41,38 @@
     export default {
         data () {
             return {
-                todo: {}
+                todo: {},
+                errors: {
+                    state: '',
+                    title: '',
+                    content: '',
+                }
             }
         },
         methods: {
             submit () {
+                if (!this.todo.state) {
+                    this.errors.state = '状態を選んでください'
+                } else {
+                    this.errors.state = ''
+                }
+
+                if (!this.todo.title) {
+                    this.errors.title = 'タイトルを入力してください'
+                } else {
+                    this.errors.title = ''
+                }
+
+                if (!this.todo.content) {
+                    this.errors.content = '内容を入力してください'
+                } else {
+                    this.errors.content = ''
+                }
+
+                if (!this.todo.state || !this.todo.title || !this.todo.content) {
+                    return
+                }
+
                 axios.post('/api', this.todo)
                     .then((res) => {
                         this.$router.push({ name: 'todo.list'})
@@ -49,3 +81,11 @@
         }
     }
 </script>
+
+<style scoped>
+    .error {
+        margin-bottom: 20px;
+        color: red;
+        font-size: 20px;
+    }
+</style>
